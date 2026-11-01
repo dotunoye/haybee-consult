@@ -296,3 +296,30 @@ document.addEventListener("DOMContentLoaded", () => {
     messageField.value = `I'm interested in ${requestedProperty}. Please contact me with more information.`;
   }
 });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchBtn = document.getElementById('mobileSearchBtn');
+    const closeBtn = document.getElementById('closeSearchBtn');
+    const searchModal = document.getElementById('searchModal');
+    const searchBackdrop = document.getElementById('searchBackdrop');
+
+    if (searchBtn && searchModal) {
+      // Open Modal
+      searchBtn.addEventListener('click', () => {
+        searchModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Locks background scrolling
+      });
+
+      // Close Modal Function
+      const closeModal = () => {
+        searchModal.classList.remove('active');
+        document.body.style.overflow = ''; // Unlocks background scrolling
+      };
+
+      // Close via X button
+      closeBtn.addEventListener('click', closeModal);
+      
+      // Close via tapping outside the form (the blur backdrop)
+      searchBackdrop.addEventListener('click', closeModal);
+    }
+  });
