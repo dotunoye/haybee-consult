@@ -152,7 +152,7 @@ a {
     backdrop-filter 0.25s ease;
 }
 .site-header.scrolled {
-background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border: 1px solid rgba(32, 22, 17, 0.08);
@@ -328,7 +328,7 @@ background: rgba(255, 255, 255, 0.3);
 .hero-shade {
   position: absolute;
   inset: 0;
-  background: rgba(22, 16, 13, 0.43);
+  background: rgba(22, 16, 13, 0.651);
 }
 .hero-content {
   position: relative;
@@ -432,7 +432,6 @@ background: rgba(255, 255, 255, 0.3);
   background: var(--walnut);
 }
 
-
 /* ========================================= */
 /* THE CUTOUT EFFECT                         */
 /* ========================================= */
@@ -452,23 +451,31 @@ background: rgba(255, 255, 255, 0.3);
 .search-cutout::before {
   content: "";
   position: absolute;
-  bottom: 100%; 
+  bottom: 100%;
   right: 0;
-  width: 24px; 
+  width: 24px;
   height: 24px;
   /* Draws a transparent circle from the top-left, filling the rest with white */
-  background: radial-gradient(circle at top left, transparent 24px, #ffffff 24.5px);
+  background: radial-gradient(
+    circle at top left,
+    transparent 24px,
+    #ffffff 24.5px
+  );
 }
 
 /* Bottom-left inverted curve */
 .search-cutout::after {
   content: "";
   position: absolute;
-  bottom: 0; 
+  bottom: 0;
   right: 100%;
-  width: 24px; 
+  width: 24px;
   height: 24px;
-  background: radial-gradient(circle at top left, transparent 24px, #ffffff 24.5px);
+  background: radial-gradient(
+    circle at top left,
+    transparent 24px,
+    #ffffff 24.5px
+  );
 }
 
 /* ========================================= */
@@ -496,7 +503,7 @@ background: rgba(255, 255, 255, 0.3);
 }
 
 .search-field label {
-  font-family: 'Urbanist', sans-serif;
+  font-family: "Urbanist", sans-serif;
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -506,7 +513,7 @@ background: rgba(255, 255, 255, 0.3);
 .search-input {
   background: transparent;
   border: none;
-  font-family: 'Urbanist', sans-serif;
+  font-family: "Urbanist", sans-serif;
   font-size: 1rem;
   color: #ffffff;
   outline: none;
@@ -520,7 +527,7 @@ background: rgba(255, 255, 255, 0.3);
 }
 
 .search-action-btn {
-  background: #FFEAD5; 
+  background: #ffead5;
   color: #201611;
   width: 48px;
   height: 48px;
@@ -547,14 +554,14 @@ background: rgba(255, 255, 255, 0.3);
 @media (max-width: 1024px) {
   /* Return hero padding to normal since the form is now hidden */
   .hero-content {
-    padding: 0 24px 100px 24px; 
+    padding: 0 24px 100px 24px;
   }
 
   .button-light {
-  color: var(--walnut);
-  background: var(--cream);
-  display: flex;
-}
+    color: var(--walnut);
+    background: var(--cream);
+    display: flex;
+  }
 
   /* 1. The Glass Trigger Button at Bottom Left */
   .mobile-search-trigger {
@@ -576,7 +583,7 @@ background: rgba(255, 255, 255, 0.3);
     font-size: 1rem;
     cursor: pointer; */
     z-index: 10;
-    background: #FFEAD5;
+    background: #ffead5;
     color: #201611;
     width: 48px;
     height: 48px;
@@ -587,7 +594,7 @@ background: rgba(255, 255, 255, 0.3);
     align-items: center;
     cursor: pointer;
     transition: transform 0.2s ease;
-      position: absolute;
+    position: absolute;
     bottom: 24px;
     right: 24px;
   }
@@ -605,12 +612,14 @@ background: rgba(255, 255, 255, 0.3);
     justify-content: center;
     z-index: 100;
     border-radius: 0;
-    
+
     /* Hidden state */
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
   }
 
   /* Active state triggered by JS */
@@ -647,9 +656,9 @@ background: rgba(255, 255, 255, 0.3);
     border-radius: 24px;
     background: var(--walnut, #201611);
     position: relative;
-    
+
     /* Slide Animation Setup */
-    transform: translateY(100%); 
+    transform: translateY(100%);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -681,7 +690,7 @@ background: rgba(255, 255, 255, 0.3);
     padding-bottom: 16px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
-  
+
   .search-field:nth-last-of-type(1) {
     border-bottom: none;
     padding-bottom: 0;
@@ -705,8 +714,38 @@ background: rgba(255, 255, 255, 0.3);
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 5fr 1fr 6fr; /* Creates the asymmetrical gap */
+  grid-template-columns: 5fr 1fr 6fr; /* Desktop: Asymmetrical gap */
   align-items: center;
+}
+
+/* Tablet: Kill the empty gap so text isn't squished */
+@media (max-width: 1024px) {
+  .bio-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .bio-text {
+    grid-column: 1 / 2;
+  }
+  .bio-visual {
+    grid-column: 2 / 3;
+  }
+}
+
+/* Mobile: Stack into one column, but constrain width */
+@media (max-width: 650px) {
+  .bio-container {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  .bio-text,
+  .bio-visual {
+    grid-column: 1 / -1;
+  }
+  .floating-stat {
+    left: 24px;
+    right: 24px;
+  } /* Keeps the stat card inside bounds */
 }
 
 /* Typography & Left Column */
@@ -716,7 +755,7 @@ background: rgba(255, 255, 255, 0.3);
 
 .bio-text .eyebrow {
   display: block;
-  font-family: 'Urbanist', sans-serif;
+  font-family: "Urbanist", sans-serif;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -753,7 +792,9 @@ background: rgba(255, 255, 255, 0.3);
   text-decoration: none;
   border-bottom: 1px solid rgba(32, 22, 17, 0.2);
   padding-bottom: 4px;
-  transition: gap 0.3s ease, border-color 0.3s ease;
+  transition:
+    gap 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .editorial-link:hover {
@@ -806,28 +847,30 @@ background: rgba(255, 255, 255, 0.3);
 }
 
 .floating-stat .stat-label {
-  font-family: 'Urbanist', sans-serif;
+  font-family: "Urbanist", sans-serif;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--peach, #FFEAD5);
+  color: var(--peach, #ffead5);
 }
+
+/* @media (max-width: 650px) {
+  .bio-container {
+    grid-template-columns: 1fr; /* Stacks everything into one column *
+    gap: 60px;
+  }
+} */
 
 /* Mobile Responsive Stacking */
 @media (max-width: 1024px) {
   .firm-bio-section {
     padding: 60px 12px;
   }
-  
-  .bio-container {
-    grid-template-columns: 1fr; /* Stacks everything into one column */
-    gap: 60px;
-  }
-  
+
   .bio-text {
     grid-column: 1 / -1;
   }
-  
+
   .bio-visual {
     grid-column: 1 / -1;
     margin-bottom: 30px; /* Space for the floating card */
@@ -840,7 +883,6 @@ background: rgba(255, 255, 255, 0.3);
     text-align: center;
   }
 }
-
 
 .bio-bento-section {
   display: flex;
@@ -864,7 +906,7 @@ background: rgba(255, 255, 255, 0.3);
 }
 
 .bio-sticky-left .eyebrow {
-  font-family: 'Urbanist', sans-serif;
+  font-family: "Urbanist", sans-serif;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -873,14 +915,14 @@ background: rgba(255, 255, 255, 0.3);
 }
 
 .bio-sticky-left h2 {
-  font-family: 'Cardo', serif;
+  font-family: "Cardo", serif;
   font-size: clamp(2.5rem, 4vw, 3.5rem);
   line-height: 1.1;
   margin: 0 0 24px 0;
 }
 
 .bio-copy {
-  font-family: 'Urbanist', sans-serif;
+  font-family: "Urbanist", sans-serif;
   font-size: 1.125rem;
   line-height: 1.7;
   color: rgba(32, 22, 17, 0.8);
@@ -921,7 +963,7 @@ background: rgba(255, 255, 255, 0.3);
   align-items: flex-end;
   padding: 32px;
   /* Add background images to these via inline styles or dedicated classes */
-  background-color: var(--walnut, #201611); 
+  background-color: var(--walnut, #201611);
   color: #ffffff;
   transition: transform 0.3s ease;
 }
@@ -933,7 +975,11 @@ background: rgba(255, 255, 255, 0.3);
 .card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(32, 22, 17, 0.9) 0%, rgba(32, 22, 17, 0.1) 60%);
+  background: linear-gradient(
+    to top,
+    rgba(32, 22, 17, 0.9) 0%,
+    rgba(32, 22, 17, 0.1) 60%
+  );
   z-index: 1;
 }
 
@@ -943,13 +989,13 @@ background: rgba(255, 255, 255, 0.3);
 }
 
 .card-content h3 {
-  font-family: 'Cardo', serif;
+  font-family: "Cardo", serif;
   font-size: 1.75rem;
   margin: 0 0 8px 0;
 }
 
 .card-content p {
-  font-family: 'Urbanist', sans-serif;
+  font-family: "Urbanist", sans-serif;
   font-size: 0.9rem;
   opacity: 0.8;
   margin: 0;
@@ -981,13 +1027,13 @@ background: rgba(255, 255, 255, 0.3);
     padding: 80px 24px;
     gap: 40px;
   }
-  
+
   .bio-sticky-left {
     position: relative; /* Disables sticky on mobile */
     top: 0;
     width: 100%;
   }
-  
+
   .scrolling-right {
     width: 100%;
   }
@@ -1000,8 +1046,10 @@ background: rgba(255, 255, 255, 0.3);
     grid-template-columns: 1fr;
     grid-auto-rows: 250px;
   }
-  
-  .card-tall, .card-square, .card-wide {
+
+  .card-tall,
+  .card-square,
+  .card-wide {
     grid-column: 1 / -1;
     grid-row: span 1;
   }
@@ -1299,6 +1347,39 @@ background: rgba(255, 255, 255, 0.3);
   font-weight: 600;
   text-align: right;
 }
+/* The Image Container */
+.card-image {
+  width: 100%;
+  aspect-ratio: 4 / 3; /* Forces a consistent architectural landscape shape */
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 24px; /* Space between image and your text */
+  background-color: rgba(32, 22, 17, 0.05); /* Placeholder color while images load */
+  
+  /* Fixes potential sub-pixel clipping issues */
+  transform: translateZ(0); 
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Luxury Hover Effect */
+.commercial-card:hover .card-image img {
+  transform: scale(1.04);
+}
+
+/* Mobile Responsive Stacking */
+@media (max-width: 768px) {
+  .commercial-grid {
+    grid-template-columns: 1fr; /* Stacks to a single column */
+    gap: 56px; /* Slightly larger vertical gap on mobile to separate cards clearly */
+  }
+}
 .content-section {
   padding-top: 85px;
 }
@@ -1325,7 +1406,7 @@ background: rgba(255, 255, 255, 0.3);
 }
 .contact-form {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 17px;
   padding: 28px;
   border: 1px solid var(--line);
@@ -1366,6 +1447,7 @@ background: rgba(255, 255, 255, 0.3);
   gap: 35px;
   margin-top: 0;
   margin-bottom: 80px;
+  margin-top: 80px;
   border-radius: 10px;
   padding: 42px clamp(28px, 6vw, 80px);
   color: #fff;
@@ -1585,6 +1667,29 @@ background: rgba(255, 255, 255, 0.3);
   gap: 30px;
   padding-top: 0;
   padding-bottom: 100px;
+}
+.contact-map-section .section-title {
+  margin-bottom: var(--spacing-xl); /* 48px */
+}
+ 
+.contact-map-embed {
+  width: 100%;
+  height: 500px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--color-teal);
+}
+ 
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+ 
+  .contact-map-placeholder {
+    height: 280px;
+  }
 }
 .map-card {
   overflow: hidden;
@@ -1937,7 +2042,6 @@ background: rgba(255, 255, 255, 0.3);
     width: min(100% - 36px, var(--content-width));
   }
   .site-header {
-
     width: calc(100% - 24px);
     min-height: 58px;
   }
@@ -2176,7 +2280,7 @@ background: rgba(255, 255, 255, 0.3);
   }
   .hero {
     min-height: 100vh;
-    min-height: calc(100svh - 24px) ;
+    min-height: calc(100svh - 24px);
     margin: 8px;
   }
   .hero-content {
@@ -2325,18 +2429,20 @@ background: rgba(255, 255, 255, 0.3);
     padding: 0;
   }
   .cta-band {
-    align-items: stretch;
+    align-items: center;
     flex-direction: column;
     gap: 25px;
     margin-bottom: 42px;
     padding: 27px 22px;
   }
   .cta-band h2 {
-    font-size: 2.55rem;
+    font-size: 2rem;
+    text-align: center;
   }
   .cta-actions {
     flex-direction: column;
     justify-content: flex-start;
+    gap: 24px;
   }
   .cta-actions .button {
     flex: 1 1 100%;
@@ -2377,6 +2483,7 @@ background: rgba(255, 255, 255, 0.3);
   flex-direction: column;
   gap: 48px;
   text-align: left;
+  justify-content: center;
 }
 
 .intro-content {
@@ -2385,11 +2492,11 @@ background: rgba(255, 255, 255, 0.3);
 }
 
 .intro-image {
-  width: 100%;
+  max-width: 500px;
 }
 
 .intro-image img {
-  width: 100%;
+  max-width: 500px;
   object-fit: cover;
   border-radius: 4px;
   aspect-ratio: 1/1;
@@ -2419,8 +2526,8 @@ background: rgba(255, 255, 255, 0.3);
 
 .section-header .eyebrow {
   display: block;
-  font-family: 'Urbanist', sans-serif;
-  font-size: 0.75rem; 
+  font-family: "Urbanist", sans-serif;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.25em; /* Wide spacing for the luxury aesthetic */
   color: var(--walnut, #201611);
@@ -2429,7 +2536,7 @@ background: rgba(255, 255, 255, 0.3);
 }
 
 .section-header .section-title {
-  font-family: 'Cardo', serif;
+  font-family: "Cardo", serif;
   font-size: 2.75rem;
   color: var(--walnut, #201611);
   margin: 0 0 20px 0;
@@ -2437,7 +2544,7 @@ background: rgba(255, 255, 255, 0.3);
 }
 
 .section-header .section-subtitle {
-  font-family: 'Urbanist', sans-serif;
+  font-family: "Urbanist", sans-serif;
   font-size: 1.125rem;
   color: #4a4a4a; /* Muted dark grey so it doesn't compete with the title */
   line-height: 1.6;
@@ -2454,5 +2561,983 @@ background: rgba(255, 255, 255, 0.3);
   }
   .section-header .section-subtitle {
     font-size: 1rem;
+  }
+}
+
+
+.desks-bento-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 300px;
+  gap: 24px;
+}
+
+.bento-card:hover {
+  transform: translateY(-4px);
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(32, 22, 17, 0.95) 0%, rgba(32, 22, 17, 0.2) 70%);
+  z-index: 1;
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+}
+
+.card-content h3 {
+  font-family: 'Cardo', serif;
+  font-size: 2rem;
+  margin: 0 0 12px 0;
+  line-height: 1.1;
+}
+
+.card-content p {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 1rem;
+  opacity: 0.8;
+  margin: 0;
+}
+
+/* Asymmetric Mapping */
+.card-residential {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.card-commercial {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+.card-jv, .card-management {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+/* Mobile Fallback: Kills the asymmetric grid and stacks uniformly */
+@media (max-width: 900px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 280px; /* Slightly shorter on mobile */
+  }
+  .card-residential, .card-commercial, .card-jv, .card-management {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+/* Base Card Settings (Added Background Handlers) */
+.bento-card {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  align-items: flex-end;
+  padding: 32px;
+  background-color: var(--walnut, #201611); 
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  transition: transform 0.3s ease;
+}
+
+/* 
+  Inject your high-res property images here.
+  I've added placeholders so you can see the layout immediately.
+*/
+.card-residential {
+  background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80');
+}
+.card-commercial {
+  background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80');
+}
+.card-jv {
+  background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80');
+}
+.card-management {
+  background-image: url('https://images.unsplash.com/photo-1560184897-ae75f418493e?auto=format&fit=crop&w=800&q=80');
+}
+
+/* Desktop Asymmetric Mapping */
+.card-residential {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.card-commercial {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+.card-jv, .card-management {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+/* Mobile Bento Layout (The Top-Heavy Structure) */
+@media (max-width: 900px) {
+  .bento-grid {
+    /* Create a 2-column grid for mobile to allow side-by-side squares */
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 220px; /* Base height for the smaller squares */
+    gap: 16px; /* Slightly tighter gap for mobile */
+  }
+
+  /* 1. The Massive Anchor on Top (Full width, double height) */
+  .card-residential {
+    grid-column: span 2;
+    grid-row: span 2; 
+  }
+  
+  /* 2. The Wide Middle Banner (Full width, single height) */
+  .card-commercial {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+  
+  /* 3. The Bottom Squares (Side-by-side) */
+  .card-jv, .card-management {
+    grid-column: span 1;
+    grid-row: span 1;
+    padding: 24px; /* Tighter padding for the small mobile squares */
+  }
+
+  /* Scale down the typography for the small side-by-side squares so they don't break */
+  .card-jv h3, .card-management h3 {
+    font-size: 1.5rem;
+  }
+  .card-jv p, .card-management p {
+    font-size: 0.85rem;
+  }
+}
+
+/* ========================================= */
+/* 1. TRACK RECORD (STATS)                   */
+/* ========================================= */
+.track-record-section {
+  max-width: 1200px;
+  margin: 100px auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stat-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+}
+
+.stat-number {
+  font-family: 'Cardo', serif;
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  color: var(--walnut, #201611);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.stat-label {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(32, 22, 17, 0.6);
+}
+
+.stat-divider {
+  width: 1px;
+  height: 80px;
+  background-color: rgba(32, 22, 17, 0.1);
+}
+
+/* ========================================= */
+/* 2. THE PEDIGREE (QUOTE)                   */
+/* ========================================= */
+.pedigree-section {
+  background-color: #FAFAFA; /* Very subtle off-white to separate it from the pure white background */
+  padding: 120px 24px;
+  text-align: center;
+}
+
+.pedigree-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quote-icon {
+  margin-bottom: 32px;
+}
+
+.editorial-quote {
+  font-family: 'Cardo', serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  line-height: 1.3;
+  color: var(--walnut, #201611);
+  margin: 0 0 32px 0;
+}
+
+.pedigree-container cite {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(32, 22, 17, 0.5);
+  font-style: normal;
+}
+
+/* ========================================= */
+/* 3. CLOSING ANCHOR (CTA)                   */
+/* ========================================= */
+.closing-anchor-section {
+  padding: 80px 24px 120px 24px;
+}
+
+.anchor-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: var(--walnut, #201611);
+  border-radius: 24px;
+  padding: 100px 40px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.anchor-card h2 {
+  font-family: 'Cardo', serif;
+  font-size: clamp(2.5rem, 4vw, 3.75rem);
+  margin: 0 0 24px 0;
+  line-height: 1.1;
+}
+
+.anchor-card p {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  margin: 0 auto 48px auto;
+  line-height: 1.6;
+}
+
+.anchor-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* ========================================= */
+/* MOBILE RESPONSIVENESS                     */
+/* ========================================= */
+@media (max-width: 768px) {
+  /* Stats convert to a vertical stack with horizontal dividers */
+  .track-record-section {
+    flex-direction: column;
+    gap: 40px;
+    margin: 80px auto;
+  }
+  
+  .stat-divider {
+    width: 80px;
+    height: 1px;
+  }
+
+  .pedigree-section {
+    padding: 80px 24px;
+  }
+
+  /* CTA adjustments */
+  .anchor-card {
+    padding: 60px 24px;
+    border-radius: 24px;
+  }
+
+  .anchor-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .anchor-actions .button {
+    width: 100%;
+  }
+}
+
+/* ========================================= */
+/* THE HANDOVER PROTOCOL (TIMELINE)          */
+/* ========================================= */
+
+.handover-section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 48px;
+  position: relative;
+}
+
+/* The connecting line behind the steps */
+.timeline-grid::before {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(32, 22, 17, 0.1);
+  z-index: 0;
+}
+
+.timeline-step {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  padding-top: 60px;
+}
+
+.step-number {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 48px;
+  height: 48px;
+  background: var(--peach, #FFEAD5);
+  color: var(--walnut, #201611);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cardo', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border: 4px solid #ffffff; /* Cuts through the background line */
+}
+
+.timeline-step h3 {
+  font-family: 'Cardo', serif;
+  font-size: 1.5rem;
+  margin: 0 0 8px 0;
+  color: var(--walnut, #201611);
+}
+
+.step-time {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(32, 22, 17, 0.6);
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.timeline-step p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(32, 22, 17, 0.8);
+}
+
+/* ========================================= */
+/* STEWARDSHIP ECONOMICS (PRICING & TERMS)   */
+/* ========================================= */
+
+.economics-section {
+  padding-top: 80px;
+  padding-bottom: 120px;
+}
+
+.economics-container {
+  background: var(--walnut, #201611);
+  border-radius: 24px;
+  padding: 80px 60px;
+  color: #ffffff;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.economics-text h2 {
+  font-family: 'Cardo', serif;
+  font-size: clamp(2.5rem, 4vw, 3rem);
+  margin: 16px 0 24px 0;
+  line-height: 1.1;
+}
+
+.economics-text p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.terms-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.term-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.term-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--peach, #FFEAD5);
+  margin: 0 0 16px 0;
+}
+
+.price-figure {
+  font-family: 'Cardo', serif;
+  font-size: 2.5rem;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.price-figure span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.term-card p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* Spans full width of the right column */
+.term-list-card {
+  grid-column: 1 / -1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.term-list-card h3 {
+  font-family: 'Cardo', serif;
+  font-size: 1.5rem;
+  margin: 0 0 24px 0;
+}
+
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.check-list li strong {
+  color: #ffffff;
+}
+
+/* Custom Checkmark */
+.check-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--peach, #FFEAD5);
+  font-weight: bold;
+}
+
+/* ========================================= */
+/* MOBILE RESPONSIVENESS                     */
+/* ========================================= */
+
+@media (max-width: 1024px) {
+  .economics-container {
+    grid-template-columns: 1fr;
+    padding: 60px 40px;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Timeline Stacking */
+  .timeline-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .timeline-grid::before {
+    display: none; /* Kills the horizontal line on mobile */
+  }
+  
+  .timeline-step {
+    padding-top: 0;
+    padding-left: 64px; /* Moves text right to accommodate the circle */
+  }
+  
+  .step-number {
+    top: -4px;
+  }
+
+  /* Economics Stacking */
+  .economics-container {
+    padding: 40px 24px;
+  }
+  
+  .terms-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .term-list-card {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* Page Base */
+.asset-management-page {
+  background-color: var(--walnut, #201611);
+  color: #ffffff;
+}
+
+/* ========================================= */
+/* 1. THE VAULT HERO                         */
+/* ========================================= */
+.vault-hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 40px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.vault-hero-content {
+  width: 50%;
+  position: relative;
+  z-index: 2;
+  padding-right: 40px;
+}
+
+.vault-hero-content h1 {
+  font-family: 'Cardo', serif;
+  font-size: clamp(3.5rem, 5vw, 5rem);
+  line-height: 1.05;
+  margin: 16px 0 32px 0;
+}
+
+.vault-hero-content .hero-copy {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 480px;
+  line-height: 1.7;
+}
+
+.vault-hero-image {
+  position: absolute;
+  right: 40px;
+  top: 120px;
+  bottom: 40px;
+  width: 45%;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.vault-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.85);
+}
+
+/* ========================================= */
+/* 2. STEWARDSHIP NARRATIVE (STICKY)         */
+/* ========================================= */
+.stewardship-narrative {
+  display: flex;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 120px auto;
+  padding: 0 40px;
+  align-items: flex-start;
+}
+
+.narrative-sticky {
+  position: sticky;
+  top: 160px;
+  width: 40%;
+}
+
+.narrative-sticky h2 {
+  font-family: 'Cardo', serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  margin: 0 0 24px 0;
+  line-height: 1.1;
+  color: var(--peach, #FFEAD5);
+}
+
+.narrative-sticky p {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.narrative-scrolling {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 80px; /* Massive gap to force scrolling focus */
+}
+
+.narrative-block {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 32px;
+}
+
+.block-number {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.1em;
+}
+
+.narrative-block h3 {
+  font-family: 'Cardo', serif;
+  font-size: 2rem;
+  margin: 16px 0 16px 0;
+}
+
+.narrative-block p {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ========================================= */
+/* 3. ECONOMICS BENTO GRID                   */
+/* ========================================= */
+.economics-bento {
+  max-width: 1200px;
+  margin: 160px auto;
+  padding: 0 40px;
+}
+
+.bento-header {
+  margin-bottom: 64px;
+}
+
+.bento-header h2 {
+  font-family: 'Cardo', serif;
+  font-size: 3rem;
+  margin: 0 0 8px 0;
+}
+
+.bento-header p {
+  font-family: 'Urbanist', sans-serif;
+  color: var(--peach, #FFEAD5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+}
+
+.eco-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.eco-card {
+  border-radius: 24px;
+  padding: 48px;
+}
+
+.dark-card {
+  background: #110c09; /* Darker than walnut */
+}
+
+.light-card {
+  background: var(--peach, #FFEAD5);
+  color: var(--walnut, #201611);
+}
+
+.outline-card {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.wide-card {
+  grid-column: 1 / -1;
+}
+
+.eco-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 16px 0;
+  opacity: 0.8;
+}
+
+.eco-value {
+  font-family: 'Cardo', serif;
+  font-size: 3.5rem;
+  line-height: 1;
+  margin-bottom: 24px;
+}
+
+.eco-value span {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 1rem;
+  opacity: 0.6;
+}
+
+.eco-desc {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.outline-card h3 {
+  font-family: 'Cardo', serif;
+  font-size: 2rem;
+  margin: 0 0 32px 0;
+}
+
+.protocol-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.step h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  color: var(--peach, #FFEAD5);
+  margin: 0 0 8px 0;
+}
+
+.step p {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ========================================= */
+/* 4. THE MANDATE FORM (PRIVATE BANKING)     */
+/* ========================================= */
+.mandate-section {
+  background: #0a0705; /* Deepest black/brown */
+  padding: 120px 40px;
+  margin-top: 120px;
+}
+
+.mandate-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mandate-text {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.mandate-text h2 {
+  font-family: 'Cardo', serif;
+  font-size: clamp(3rem, 5vw, 4rem);
+  margin: 0 0 16px 0;
+}
+
+.mandate-text p {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 500px;
+}
+
+.mandate-form {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.form-row {
+  display: flex;
+  gap: 40px;
+}
+
+.form-group {
+  position: relative;
+  flex: 1;
+}
+
+.form-group.full-width {
+  width: 100%;
+}
+
+/* Minimalist Input Styling */
+.form-group input, 
+.form-group select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 12px 0;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 1.125rem;
+  color: #ffffff;
+  outline: none;
+  border-radius: 0;
+  transition: border-color 0.3s ease;
+}
+
+.form-group select {
+  cursor: pointer;
+  appearance: none;
+}
+.form-group select option {
+  background: #110c09;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-bottom-color: var(--peach, #FFEAD5);
+}
+
+/* Floating Labels */
+.form-group label {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  transition: 0.3s ease all;
+}
+
+/* Float label up when input is focused or has text */
+.form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label {
+  top: -20px;
+  font-size: 0.75rem;
+  color: var(--peach, #FFEAD5);
+}
+
+.mandate-submit {
+  background: var(--peach, #FFEAD5);
+  color: var(--walnut, #201611);
+  border: none;
+  padding: 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.2s ease, background 0.2s ease;
+  margin-top: 24px;
+}
+
+.mandate-submit:hover {
+  transform: translateY(-2px);
+  background: #ffffff;
+}
+
+/* ========================================= */
+/* MOBILE RESPONSIVENESS                     */
+/* ========================================= */
+@media (max-width: 1024px) {
+  .vault-hero {
+    flex-direction: column;
+    padding: 120px 24px 40px;
+  }
+  
+  .vault-hero-content {
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: 40px;
+  }
+  
+  .vault-hero-image {
+    position: relative;
+    width: 100%;
+    right: 0;
+    top: 0;
+    height: 400px;
+  }
+
+  .stewardship-narrative {
+    flex-direction: column;
+    gap: 60px;
+    padding: 0 24px;
+  }
+  
+  .narrative-sticky, .narrative-scrolling {
+    width: 100%;
+  }
+  
+  .narrative-sticky {
+    position: relative;
+    top: 0;
+  }
+
+  .eco-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .protocol-steps {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 48px;
+  }
+  
+  .mandate-section {
+    padding: 80px 24px;
   }
 }
