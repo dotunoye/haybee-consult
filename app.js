@@ -10,6 +10,7 @@ const properties = {
     baths: "4 bathrooms",
     area: "3,800 sq ft",
     image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1400&q=85",
+    gallery: ["https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=85"],
     description: "A spacious private residence in one of Ikoyi's established neighbourhoods. Generous living areas, considered finishes, and excellent access to the island's business and leisure destinations.",
     features: ["Private balcony", "Secure parking", "Residents' gym", "24-hour security"]
   },
@@ -24,6 +25,7 @@ const properties = {
     baths: "5 bathrooms",
     area: "5,200 sq ft",
     image: "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1400&q=85",
+    gallery: ["https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=85"],
     description: "A penthouse residence with expansive proportions and a central Victoria Island address. The home is suited to buyers seeking a private, full-service city residence.",
     features: ["Private terrace", "Lift access", "Dedicated parking", "Concierge service"]
   },
@@ -38,6 +40,7 @@ const properties = {
     baths: "4 bathrooms",
     area: "4,600 sq ft",
     image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1400&q=85",
+    gallery: ["https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=85"],
     description: "A contemporary four-bedroom villa in a growing Lagos corridor, offering a generous private footprint and easy access to the Lekki-Epe Expressway.",
     features: ["Private garden", "En-suite bedrooms", "Family lounge", "Gated community"]
   },
@@ -52,6 +55,7 @@ const properties = {
     baths: "3 bathrooms",
     area: "2,900 sq ft",
     image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1400&q=85",
+    gallery: ["https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=85"],
     description: "An elegant townhouse in Guzape with practical family spaces and a calm residential setting, within easy reach of Abuja's central districts.",
     features: ["Fitted kitchen", "Private parking", "Gated estate", "Backup power"]
   },
@@ -66,6 +70,7 @@ const properties = {
     baths: "2 bathrooms",
     area: "1,850 sq ft",
     image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1400&q=85",
+    gallery: ["https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=85"],
     description: "A furnished apartment in Lekki Phase 1 designed for comfortable, convenient city living, with nearby dining, retail, and business destinations.",
     features: ["Furnished", "Serviced building", "Secure parking", "Generator backup"]
   },
@@ -80,6 +85,7 @@ const properties = {
     baths: "4 bathrooms",
     area: "4,900 sq ft",
     image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1400&q=85",
+    gallery: ["https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=85"],
     description: "A substantial private villa in Asokoro, presented here as a representative example of our residential portfolio and completed transactions.",
     features: ["Private garden", "Five bedrooms", "Secure parking", "Gated residence"]
   },
@@ -94,6 +100,7 @@ const properties = {
     baths: "3 bathrooms",
     area: "2,300 sq ft",
     image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=85",
+    gallery: ["https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=85"],
     description: "A well-appointed serviced apartment in Ikeja GRA with easy access to the airport, commercial districts, and the area's established amenities.",
     features: ["Serviced residence", "On-site security", "Parking", "Backup power"]
   },
@@ -108,6 +115,7 @@ const properties = {
     baths: "3 bathrooms",
     area: "3,700 sq ft",
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=85",
+    gallery: ["https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=85", "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=85"],
     description: "A family townhouse in a well-connected Gwarinpa neighbourhood, with a thoughtful layout and generous space for everyday living.",
     features: ["Private outdoor space", "Family lounge", "Secure estate", "Dedicated parking"]
   }
@@ -122,7 +130,7 @@ function setupNavigation() {
   const updateHeader = () => {
     if (header) {
       const alwaysGlass = document.body.classList.contains("property-page") || document.body.classList.contains("portal-page");
-      header.classList.toggle("scrolled", window.scrollY > 24 || alwaysGlass);
+      header.classList.toggle("scrolled", window.scrollY > 50 || alwaysGlass);
     }
   };
   updateHeader();
@@ -170,7 +178,8 @@ function setupNavigation() {
 }
 
 function setupReveals() {
-  const revealItems = document.querySelectorAll(".reveal");
+  document.querySelectorAll("h1, h2").forEach((heading) => heading.classList.add("reveal-text"));
+  const revealItems = document.querySelectorAll(".reveal, .reveal-text");
   if (!("IntersectionObserver" in window)) {
     revealItems.forEach((item) => item.classList.add("is-visible"));
     return;
@@ -179,6 +188,10 @@ function setupReveals() {
   const observer = new IntersectionObserver((entries, currentObserver) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
+        const group = entry.target.closest("section") || document;
+        const siblings = [...group.querySelectorAll(".reveal-text")];
+        const siblingIndex = entry.target.matches(".reveal-text") ? siblings.indexOf(entry.target) : -1;
+        if (siblingIndex >= 0) entry.target.style.setProperty("--reveal-delay", `${siblingIndex * 100}ms`);
         entry.target.classList.add("is-visible");
         currentObserver.unobserve(entry.target);
       }
@@ -186,6 +199,40 @@ function setupReveals() {
   }, { threshold: 0.12 });
 
   revealItems.forEach((item) => observer.observe(item));
+}
+
+function setupButtonArrows() {
+  document.querySelectorAll(".button > span[aria-hidden='true']").forEach((arrow) => {
+    arrow.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  });
+}
+
+function setupParallax() {
+  const containers = [...document.querySelectorAll(".parallax-image")];
+  if (!containers.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  let ticking = false;
+  const update = () => {
+    const viewportHeight = window.innerHeight;
+    containers.forEach((container) => {
+      const image = container.querySelector("img");
+      if (!image) return;
+      const rect = container.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > viewportHeight) return;
+      const progress = (viewportHeight - rect.top) / (viewportHeight + rect.height);
+      const distance = Number(container.dataset.parallax || 12);
+      image.style.setProperty("--parallax-y", `${(progress - 0.5) * distance}px`);
+    });
+    ticking = false;
+  };
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      window.requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+  update();
 }
 
 function setupForms() {
@@ -254,7 +301,12 @@ function renderPropertyDetail() {
   document.title = `${property.name} | Haybee Consults`;
   container.innerHTML = `
     <article class="detail-layout">
-      <div class="detail-image"><img src="${property.image}" alt="${property.name} in ${property.location}"></div>
+      <div class="detail-gallery">
+        <div class="detail-image"><img data-gallery-main src="${property.image}" alt="${property.name} in ${property.location}"></div>
+        <div class="detail-thumbnails" aria-label="More photos of ${property.name}">
+          ${[property.image, ...(property.gallery || [])].slice(0, 5).map((image, index) => `<button class="detail-thumbnail${index === 0 ? " active" : ""}" type="button" data-gallery-image="${image}" aria-label="View photo ${index + 1} of ${property.name}" aria-pressed="${index === 0}"><img src="${image}" alt="" loading="lazy"></button>`).join("")}
+        </div>
+      </div>
       <div class="detail-copy">
         <p class="eyebrow">${property.location} / ${property.purpose}</p>
         <h1>${property.name}</h1>
@@ -277,11 +329,26 @@ function renderPropertyDetail() {
       </div>
     </article>
   `;
+
+  const mainImage = container.querySelector("[data-gallery-main]");
+  container.querySelectorAll("[data-gallery-image]").forEach((button) => {
+    button.addEventListener("click", () => {
+      mainImage.src = button.dataset.galleryImage;
+      mainImage.alt = `${property.name} in ${property.location}, photo ${[...container.querySelectorAll("[data-gallery-image]")].indexOf(button) + 1}`;
+      container.querySelectorAll("[data-gallery-image]").forEach((thumbnail) => {
+        const active = thumbnail === button;
+        thumbnail.classList.toggle("active", active);
+        thumbnail.setAttribute("aria-pressed", String(active));
+      });
+    });
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   setupNavigation();
   setupReveals();
+  setupButtonArrows();
+  setupParallax();
   setupForms();
   setupPropertyFilters();
   renderPropertyDetail();
