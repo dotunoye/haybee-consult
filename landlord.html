@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Private landlord property and tenancy dashboard by Haybee Consults.">
+  <title>Landlord dashboard | Haybee Consults</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="dashboard.js"></script>
+</head>
+<body class="portal-page management-portal" data-dashboard="landlord">
+  <header class="site-header"><a class="brand" href="index.html" aria-label="Haybee Consults home"><img src="assets/logo3.png" alt="Haybee Consults"></a><a class="portal-return" href="index.html">Return to Haybee</a></header>
+  <main class="dashboard-shell section-wrap">
+    <div class="dashboard-heading"><div><p class="eyebrow">Property management / private dashboard</p><h1>Good morning.</h1><p class="dashboard-lead">A clear view of your tenancies, renewals and open requests.</p></div><button class="button button-dark" type="button" data-open-tenant-form>Add a tenant <span aria-hidden="true">↗</span></button></div>
+    <div class="prototype-notice"><strong>Preview workspace</strong><span>Records are saved in this browser. Secure multi-device access, email delivery and scheduled renewal alerts require a connected service.</span></div>
+    <section class="dashboard-stats" aria-label="Portfolio overview"><article><span>Managed homes</span><strong data-stat="homes">—</strong></article><article><span>Renewals within 60 days</span><strong data-stat="renewals">—</strong></article><article><span>Open requests</span><strong data-stat="complaints">—</strong></article></section>
+    <div class="dashboard-columns">
+      <section class="managed-list-panel"><div class="dashboard-section-heading"><div><p class="eyebrow">Your portfolio</p><h2>Current tenancies</h2></div><span class="dashboard-count" data-tenancy-count></span></div><div class="managed-list" data-managed-list></div></section>
+      <aside class="tenant-detail-panel" data-landlord-detail aria-live="polite"><div class="detail-empty"><span class="eyebrow">Tenancy overview</span><h2>Select a property</h2><p>Choose a tenancy to view its records, private tenant link and open requests.</p></div></aside>
+    </div>
+    <section class="tenant-form-panel" data-tenant-form-panel hidden><div class="dashboard-section-heading"><div><p class="eyebrow">New tenancy</p><h2>Add tenant and property</h2></div><button type="button" class="quiet-button" data-close-tenant-form aria-label="Close form">×</button></div><form class="tenant-create-form" data-tenant-form>
+      <label>Tenant name<input name="name" required autocomplete="name" placeholder="Full name"></label><label>Email address<input name="email" type="email" required autocomplete="email" placeholder="name@example.com"></label><label>Phone number<input name="phone" type="tel" autocomplete="tel" placeholder="+234 …"></label><label>Property address<input name="address" required placeholder="Street, building and unit"></label><label>Location<input name="location" required placeholder="Neighbourhood, city"></label><label>Monthly / annual rent<input name="rent" required placeholder="₦4,500,000 / year"></label><label>Tenancy start date<input name="startDate" type="date" required></label><label>Next renewal date<input name="renewalDate" type="date" required></label><label class="form-field-wide">Last payment date<input name="lastPaid" type="date"></label><div class="form-field-wide form-actions"><button class="button button-dark" type="submit">Create tenant record <span aria-hidden="true">↗</span></button><p data-form-message role="status"></p></div>
+    </form></section>
+  </main>
+  <footer class="dashboard-footer"><span>Haybee Consults · Property stewardship</span><a href="contact.html">Need help?</a></footer>
+</body>
+</html>
