@@ -4303,3 +4303,462 @@ a {
     width: 100%;
   }
 }
+
+/* Landlord workspace refinements: one portfolio view, then one tenancy view */
+.management-portal {
+  color: var(--walnut);
+  background: var(--sand);
+}
+.management-portal .site-header {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(32, 22, 17, 0.06);
+  border-radius: 12px;
+  box-shadow: 0 6px 22px rgba(32, 22, 17, 0.06);
+}
+.dashboard-shell {
+  width: min(100% - 48px, 1200px);
+  padding-top: 128px;
+}
+.dashboard-heading {
+  align-items: center;
+  margin-bottom: 25px;
+}
+.dashboard-heading h1,
+.tenant-welcome h1,
+.tenant-access-message h1 {
+  font-size: clamp(2.7rem, 5vw, 4.2rem);
+  letter-spacing: -0.04em;
+}
+.dashboard-heading .button {
+  min-height: 48px;
+  border-radius: 7px;
+  padding-inline: 21px;
+}
+.prototype-notice {
+  margin-bottom: 18px;
+  border: 1px solid #eadfd4;
+  border-left: 3px solid #9a7d65;
+  border-radius: 8px;
+  background: #fffaf5;
+}
+.dashboard-stats {
+  gap: 14px;
+  margin-bottom: 34px;
+}
+.dashboard-stats article {
+  min-height: 104px;
+  border-color: #e9e1d9;
+  border-radius: 9px;
+  background: #fff;
+  padding: 18px 20px;
+}
+.dashboard-stats article > strong {
+  color: var(--walnut);
+  font-size: 32px;
+}
+.portfolio-list-panel,
+.tenant-detail-panel,
+.tenant-form-panel,
+.tenant-history,
+.tenant-request-section {
+  border: 1px solid #e9e1d9;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 5px 18px rgba(32, 22, 17, 0.035);
+}
+.portfolio-list-panel,
+.tenant-detail-panel,
+.tenant-form-panel {
+  padding: clamp(18px, 3vw, 30px);
+}
+.portfolio-list-panel .dashboard-section-heading {
+  margin-bottom: 19px;
+}
+.portfolio-list-panel .dashboard-section-heading h2 {
+  font-size: clamp(1.8rem, 3vw, 2.25rem);
+}
+.managed-list {
+  gap: 12px;
+}
+.managed-card {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.8fr) minmax(190px, 1.1fr) minmax(0, 2fr) auto;
+  align-items: center;
+  gap: 12px 22px;
+  padding: 20px 22px;
+  border-color: #eee7df;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: none;
+  text-align: left;
+}
+.managed-card:hover,
+.managed-card:focus-visible {
+  border-color: #b9a38e;
+  background: #fcfaf7;
+  outline: none;
+}
+.managed-card-top {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+}
+.managed-card-top .eyebrow {
+  color: #806f60;
+  font-size: 9px;
+}
+.request-indicator,
+.request-clear {
+  border-radius: 4px;
+  padding: 5px 8px;
+  color: #7b6049;
+  background: #f7f0e9;
+  font-size: 9px;
+  font-weight: 600;
+}
+.request-clear {
+  color: #74685e;
+  background: #f4f1ed;
+}
+.managed-card-identity {
+  display: grid;
+  gap: 4px;
+}
+.managed-card-identity > strong {
+  font: 400 23px/1.15 var(--serif);
+}
+.managed-address {
+  color: var(--ink-soft);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.managed-card-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px 14px;
+}
+.managed-card-facts > span {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+}
+.managed-card-facts small {
+  color: #8a7d72;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.managed-card-facts strong {
+  color: var(--walnut);
+  font-size: 10px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.managed-card-facts strong.renewal-alert {
+  color: #8b5734;
+}
+.managed-card-open {
+  display: inline-flex;
+  align-items: center;
+  justify-self: end;
+  gap: 8px;
+  color: #6d5540;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.tenant-detail-panel {
+  width: min(100%, 1000px);
+  margin: 0 auto;
+  padding: clamp(21px, 4vw, 38px);
+}
+.landlord-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 27px;
+  border-bottom: 0;
+  color: #766454;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 8px;
+  padding: 5px;
+}
+.tenant-detail-head {
+  padding-bottom: 22px;
+}
+.tenant-detail-head h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+}
+.tenancy-facts {
+  padding-block: 5px;
+}
+.tenancy-facts dd {
+  font-size: 13px;
+}
+.private-link-box {
+  border-radius: 8px;
+  background: #f8f5f1;
+}
+.private-link-box .button,
+.tenant-action-row .button {
+  border-radius: 6px;
+}
+.detail-subsection .dashboard-section-heading h3 {
+  font-size: 25px;
+}
+.request-row,
+.record-row {
+  border-color: #eee7df;
+}
+.tenant-action-row {
+  border-color: #e9e1d9;
+}
+.tenant-form-panel {
+  margin-top: 20px;
+}
+.tenant-form-panel input,
+.tenant-request-form input,
+.tenant-request-form textarea,
+.payment-entry-form input {
+  border-radius: 6px;
+}
+.dashboard-footer {
+  width: min(100% - 48px, 1200px);
+  border-color: #e6ddd4;
+}
+.dashboard-footer a {
+  text-decoration: underline;
+  text-decoration-color: #c7b7a8;
+  text-underline-offset: 4px;
+}
+@media (max-width: 1050px) {
+  .managed-card {
+    grid-template-columns: minmax(135px, 0.75fr) minmax(180px, 1fr) minmax(0, 2fr);
+    gap: 15px 20px;
+  }
+  .managed-card-open {
+    grid-column: 3;
+  }
+}
+@media (max-width: 760px) {
+  .dashboard-shell {
+    width: min(100% - 36px, 680px);
+    padding-top: 112px;
+  }
+  .dashboard-heading {
+    align-items: flex-start;
+  }
+  .managed-card {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 15px 18px;
+    padding: 18px;
+  }
+  .managed-card-top {
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr auto;
+    width: 100%;
+    align-items: center;
+  }
+  .managed-card-identity {
+    grid-column: 1;
+  }
+  .managed-card-facts {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 18px;
+    padding-top: 13px;
+    border-top: 1px solid #eee7df;
+  }
+  .managed-card-facts strong {
+    font-size: 11px;
+  }
+  .managed-card-open {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .managed-card-facts ~ .managed-card-open {
+    grid-row: auto;
+  }
+}
+@media (max-width: 540px) {
+  .dashboard-shell {
+    width: calc(100% - 30px);
+    padding-top: 102px;
+    padding-bottom: 46px;
+  }
+  .dashboard-heading {
+    gap: 18px;
+  }
+  .dashboard-heading .button {
+    width: 100%;
+    justify-content: center;
+  }
+  .dashboard-stats {
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+  .dashboard-stats article {
+    min-height: 88px;
+    padding: 12px 10px;
+    border-radius: 8px;
+  }
+  .dashboard-stats article > span {
+    font-size: 8px;
+    line-height: 1.45;
+  }
+  .dashboard-stats article > strong {
+    font-size: 24px;
+  }
+  .prototype-notice {
+    gap: 3px;
+    padding: 11px 12px;
+    font-size: 10px;
+  }
+  .portfolio-list-panel,
+  .tenant-detail-panel,
+  .tenant-form-panel {
+    padding: 16px;
+    border-radius: 10px;
+  }
+  .managed-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 13px;
+    padding: 15px;
+  }
+  .managed-card-top,
+  .managed-card-identity,
+  .managed-card-facts,
+  .managed-card-open {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .managed-card-facts {
+    grid-template-columns: 1fr 1fr;
+  }
+  .managed-card-open {
+    justify-self: start;
+  }
+  .dashboard-section-heading h2 {
+    font-size: 25px;
+  }
+  .tenancy-facts {
+    grid-template-columns: 1fr 1fr;
+  }
+  .tenant-action-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .tenant-action-row .button {
+    width: 100%;
+    justify-content: center;
+  }
+  .private-link-box .button {
+    width: 100%;
+    justify-content: center;
+  }
+  .dashboard-footer {
+    width: calc(100% - 30px);
+    font-size: 9px;
+  }
+}
+@media (max-width: 760px) {
+  .managed-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .managed-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .managed-card-identity,
+  .managed-card-facts,
+  .managed-card-open {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .managed-card-facts {
+    width: 100%;
+  }
+  .managed-card-open {
+    align-self: flex-end;
+  }
+}
+@media (max-width: 540px) {
+  .managed-card {
+    gap: 13px;
+  }
+  .managed-card-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .dashboard-stats article > span {
+    min-height: 25px;
+  }
+}
+
+/* Portal palette and compact request marker */
+.management-portal {
+  background: #fff;
+}
+.management-portal .dashboard-stats article {
+  background: var(--sand);
+}
+.managed-card {
+  position: relative;
+  padding-right: 54px;
+  border-color: #e8ddd1;
+  background: #f5eee6;
+}
+.managed-card:hover,
+.managed-card:focus-visible {
+  border-color: #cbb7a4;
+  background: #f0e5d9;
+}
+.request-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border: 2px solid #f5eee6;
+  border-radius: 999px;
+  color: #fff;
+  background: #a7473d;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.managed-card:hover .request-badge,
+.managed-card:focus-visible .request-badge {
+  border-color: #f0e5d9;
+}
+.private-link-box > div {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.private-link-url {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media (max-width: 760px) {
+  .managed-card {
+    padding-right: 50px;
+  }
+  .request-badge {
+    top: 10px;
+    right: 10px;
+  }
+}

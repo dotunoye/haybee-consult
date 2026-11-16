@@ -16,8 +16,8 @@
       if (Array.isArray(value)) return value;
     } catch { /* Start with sample records if storage is unavailable. */ }
     const examples = [
-      { id: "example-ikoyi", accessToken: secureToken() || "example-ikoyi-access", name: "Mariam Adebayo", email: "mariam@example.com", phone: "+234 800 000 1201", address: "14 Bourdillon Road, Flat 4", location: "Ikoyi, Lagos", rent: "₦8,500,000 / year", startDate: offsetDate(-330), renewalDate: offsetDate(35), lastPaid: offsetDate(-330), payments: [{ date: offsetDate(-330), amount: "₦8,500,000", status: "Paid", note: "Annual rent" }, { date: offsetDate(-695), amount: "₦8,000,000", status: "Paid", note: "Annual rent" }], complaints: [{ id: "example-request", date: offsetDate(-2), subject: "Water pressure", message: "The water pressure has been low in the upstairs bathroom.", status: "Open" }] },
-      { id: "example-lekki", accessToken: secureToken() || "example-lekki-access", name: "Chinedu Okafor", email: "chinedu@example.com", phone: "+234 800 000 1202", address: "6A Admiralty Way, Apartment 3B", location: "Lekki Phase 1, Lagos", rent: "₦5,200,000 / year", startDate: offsetDate(-180), renewalDate: offsetDate(185), lastPaid: offsetDate(-180), payments: [{ date: offsetDate(-180), amount: "₦5,200,000", status: "Paid", note: "Annual rent" }], complaints: [] }
+      { id: "example-ikoyi", accessToken: secureToken() || "example-ikoyi-access", name: "Mariam Adebayo", email: "mariam@example.com", phone: "+234 800 000 1201", address: "14 Bourdillon Road, Flat 4", location: "Ikoyi, Lagos", rent: "₦8,500,000 / year", startDate: offsetDate(-330), lastRenewalDate: offsetDate(-330), renewalDate: offsetDate(35), lastPaid: offsetDate(-330), payments: [{ date: offsetDate(-330), amount: "₦8,500,000", status: "Paid", note: "Annual rent" }, { date: offsetDate(-695), amount: "₦8,000,000", status: "Paid", note: "Annual rent" }], complaints: [{ id: "example-request", date: offsetDate(-2), subject: "Water pressure", message: "The water pressure has been low in the upstairs bathroom.", status: "Open" }] },
+      { id: "example-lekki", accessToken: secureToken() || "example-lekki-access", name: "Chinedu Okafor", email: "chinedu@example.com", phone: "+234 800 000 1202", address: "6A Admiralty Way, Apartment 3B", location: "Lekki Phase 1, Lagos", rent: "₦5,200,000 / year", startDate: offsetDate(-180), lastRenewalDate: offsetDate(-180), renewalDate: offsetDate(185), lastPaid: offsetDate(-180), payments: [{ date: offsetDate(-180), amount: "₦5,200,000", status: "Paid", note: "Annual rent" }], complaints: [] }
     ];
     save(examples);
     return examples;
@@ -50,21 +50,22 @@
     if (document.body.dataset.dashboard !== "landlord") return;
     const list = document.querySelector("[data-managed-list]");
     const detail = document.querySelector("[data-landlord-detail]");
+    const home = document.querySelector("[data-landlord-home]");
     const panel = document.querySelector("[data-tenant-form-panel]");
     const form = document.querySelector("[data-tenant-form]");
     let tenancies = read();
-    let activeId = tenancies[0]?.id;
+    const hashId = decodeURIComponent(location.hash.slice(1));
+    let activeId = tenancies.some((item) => item.id === hashId) ? hashId : null;
 
     function renderDetail() {
       const item = tenancies.find((entry) => entry.id === activeId);
-      if (!item) {
-        detail.innerHTML = '<div class="detail-empty"><span class="eyebrow">Tenancy overview</span><h2>Select a property</h2><p>Choose a tenancy to view its records and private tenant link.</p></div>';
-        return;
-      }
+      if (!item) return;
+      const fullTenantLink = tenantLink(item.accessToken);
+      const shortTenantLink = fullTenantLink.length > 44 ? `${fullTenantLink.slice(0, 44)}...` : fullTenantLink;
       const open = item.complaints.filter((request) => request.status === "Open").length;
       const paymentRows = item.payments.length ? item.payments.map((payment) => `<div class="record-row"><div><strong>${escapeHTML(payment.amount)}</strong><span>${escapeHTML(payment.note || "Rent payment")}</span></div><div><strong>${escapeHTML(payment.status)}</strong><span>${dateText(payment.date)}</span></div></div>`).join("") : '<p class="dashboard-muted">No payment records have been added yet.</p>';
       const requests = item.complaints.length ? item.complaints.map((request) => `<article class="request-row"><div class="request-row-top"><span class="eyebrow">${dateText(request.date)}</span><span class="status-pill ${request.status === "Open" ? "status-open" : "status-resolved"}">${escapeHTML(request.status)}</span></div><h3>${escapeHTML(request.subject)}</h3><p>${escapeHTML(request.message)}</p>${request.status === "Open" ? `<button type="button" class="quiet-button" data-resolve="${escapeHTML(request.id)}">Mark resolved</button>` : ""}</article>`).join("") : '<p class="dashboard-muted">No questions or complaints recorded.</p>';
-      detail.innerHTML = `<div class="tenant-detail-head"><p class="eyebrow">Tenancy record</p><h2>${escapeHTML(item.name)}</h2><p>${escapeHTML(item.address)}<br>${escapeHTML(item.location)}</p><span class="rent-countdown${daysUntil(item.renewalDate) <= 60 ? " countdown-soon" : ""}">${renewalText(item.renewalDate)}</span></div><dl class="tenancy-facts"><div><dt>Rent</dt><dd>${escapeHTML(item.rent)}</dd></div><div><dt>Last paid</dt><dd>${dateText(item.lastPaid)}</dd></div><div><dt>Tenancy began</dt><dd>${dateText(item.startDate)}</dd></div><div><dt>Next renewal</dt><dd>${dateText(item.renewalDate)}</dd></div><div><dt>Tenant contact</dt><dd><a href="mailto:${encodeURIComponent(item.email)}">${escapeHTML(item.email)}</a></dd></div><div><dt>Phone</dt><dd>${escapeHTML(item.phone || "Not provided")}</dd></div></dl><section class="private-link-box"><div><p class="eyebrow">Private tenant access</p><p class="private-link-url">${escapeHTML(tenantLink(item.accessToken))}</p></div><button type="button" class="button button-outline-dark" data-copy="${escapeHTML(item.id)}">Copy link</button></section><section class="detail-subsection"><div class="dashboard-section-heading"><div><p class="eyebrow">Payment history</p><h3>Rent record</h3></div></div>${paymentRows}</section><section class="detail-subsection"><div class="dashboard-section-heading"><div><p class="eyebrow">Tenant questions</p><h3>Requests</h3></div><span class="status-pill ${open ? "status-open" : "status-resolved"}">${open} open</span></div>${requests}</section><div class="tenant-action-row"><a class="button button-outline-dark" href="mailto:${encodeURIComponent(item.email)}?subject=${encodeURIComponent("Rent renewal reminder")}&body=${encodeURIComponent(`Hello ${item.name}, your tenancy at ${item.address} is due for renewal on ${dateText(item.renewalDate)}. Please contact us to discuss next steps.`)}">Email renewal reminder</a><button type="button" class="quiet-button quiet-danger" data-delete="${escapeHTML(item.id)}">Remove tenancy</button></div>`;
+      detail.innerHTML = `<button type="button" class="text-link landlord-back-link" data-back-portfolio><span aria-hidden="true">←</span> All tenancies</button><div class="tenant-detail-head"><p class="eyebrow">Tenancy record</p><h2>${escapeHTML(item.name)}</h2><p>${escapeHTML(item.address)}<br>${escapeHTML(item.location)}</p><span class="rent-countdown${daysUntil(item.renewalDate) <= 60 ? " countdown-soon" : ""}">${renewalText(item.renewalDate)}</span></div><dl class="tenancy-facts"><div><dt>Rent</dt><dd>${escapeHTML(item.rent)}</dd></div><div><dt>Last renewal</dt><dd>${dateText(item.lastRenewalDate || item.startDate)}</dd></div><div><dt>Last paid</dt><dd>${dateText(item.lastPaid)}</dd></div><div><dt>Tenancy began</dt><dd>${dateText(item.startDate)}</dd></div><div><dt>Next renewal</dt><dd>${dateText(item.renewalDate)}</dd></div><div><dt>Tenant contact</dt><dd><a href="mailto:${encodeURIComponent(item.email)}">${escapeHTML(item.email)}</a></dd></div><div><dt>Phone</dt><dd>${escapeHTML(item.phone || "Not provided")}</dd></div></dl><section class="private-link-box"><div><p class="eyebrow">Private tenant access</p><p class="private-link-url">${escapeHTML(shortTenantLink)}</p></div><button type="button" class="button button-outline-dark" data-copy="${escapeHTML(item.id)}">Copy link</button></section><section class="detail-subsection"><div class="dashboard-section-heading"><div><p class="eyebrow">Payment history</p><h3>Rent record</h3></div></div>${paymentRows}</section><section class="detail-subsection"><div class="dashboard-section-heading"><div><p class="eyebrow">Tenant questions</p><h3>Requests</h3></div><span class="status-pill ${open ? "status-open" : "status-resolved"}">${open} open</span></div>${requests}</section><div class="tenant-action-row"><a class="button button-outline-dark" href="mailto:${encodeURIComponent(item.email)}?subject=${encodeURIComponent("Rent renewal reminder")}&body=${encodeURIComponent(`Hello ${item.name}, your tenancy at ${item.address} is due for renewal on ${dateText(item.renewalDate)}. Please contact us to discuss next steps.`)}">Email renewal reminder</a><button type="button" class="quiet-button quiet-danger" data-delete="${escapeHTML(item.id)}">Remove tenancy</button></div>`;
     }
 
     function render() {
@@ -77,8 +78,22 @@
       list.innerHTML = tenancies.length ? tenancies.map((item) => {
         const days = daysUntil(item.renewalDate);
         const requests = item.complaints.filter((request) => request.status === "Open").length;
-        return `<button class="managed-card${activeId === item.id ? " selected" : ""}" type="button" data-select="${escapeHTML(item.id)}"><span class="managed-card-top"><span class="eyebrow">${escapeHTML(item.location)}</span>${requests ? `<span class="request-indicator">${requests} request${requests === 1 ? "" : "s"}</span>` : ""}</span><strong>${escapeHTML(item.name)}</strong><span class="managed-address">${escapeHTML(item.address)}</span><span class="managed-card-bottom"><span>Renewal ${dateText(item.renewalDate)}</span><span class="days-chip${days <= 60 ? " countdown-soon" : ""}">${renewalText(item.renewalDate)}</span></span></button>`;
+        return `<button class="managed-card" type="button" data-select="${escapeHTML(item.id)}">
+          <span class="managed-card-identity"><strong>${escapeHTML(item.name)}</strong></span>
+          <span class="managed-card-top"><span class="eyebrow">${escapeHTML(item.location)}</span>${requests ? `<span class="request-badge" aria-label="${requests} open tenant request${requests === 1 ? "" : "s"}">${requests}</span>` : ""} <span class="managed-address">${escapeHTML(item.address)}</span></span>
+          <span class="managed-card-facts">
+            <span><small>Rent</small><strong>${escapeHTML(item.rent)}</strong></span>
+            <span><small>Last renewal</small><strong>${dateText(item.lastRenewalDate || item.startDate)}</strong></span>
+            <span><small>Next renewal</small><strong>${dateText(item.renewalDate)}</strong></span>
+            <span><small>Renewal countdown</small><strong class="${days <= 60 ? "renewal-alert" : ""}">${renewalText(item.renewalDate)}</strong></span>
+          </span>
+          
+        </button>`;
       }).join("") : '<div class="list-empty"><h3>No tenancies yet</h3><p>Add your first tenant to start a private record.</p></div>';
+      const showingDetail = Boolean(activeId && tenancies.some((item) => item.id === activeId));
+      home.hidden = showingDetail;
+      detail.hidden = !showingDetail;
+      if (!showingDetail) return;
       renderDetail();
       if (activeId) {
         detail.insertAdjacentHTML("beforeend", '<section class="payment-entry-wrapper"><button type="button" class="quiet-button" data-toggle-payment>Record a payment +</button><form class="payment-entry-form" data-payment-form hidden><label>Amount received<input name="amount" required placeholder="₦4,500,000"></label><label>Payment date<input name="date" required type="date"></label><label>Note<input name="note" placeholder="Annual rent"></label><button type="submit" class="button button-dark">Save payment</button></form></section>');
@@ -90,14 +105,21 @@
       const button = event.target.closest("[data-select]");
       if (!button) return;
       activeId = button.dataset.select;
+      history.pushState({ landlordTenantId: activeId }, "", `#${encodeURIComponent(activeId)}`);
       render();
-      if (matchMedia("(max-width: 860px)").matches) detail.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
     detail.addEventListener("click", async (event) => {
+      const back = event.target.closest("[data-back-portfolio]");
       const copy = event.target.closest("[data-copy]");
       const resolve = event.target.closest("[data-resolve]");
       const remove = event.target.closest("[data-delete]");
       const togglePayment = event.target.closest("[data-toggle-payment]");
+      if (back) {
+        if (history.state?.landlordTenantId) history.back();
+        else { activeId = null; history.pushState({}, "", location.pathname); render(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+        return;
+      }
       if (togglePayment) {
         const entry = detail.querySelector("[data-payment-form]");
         entry.hidden = !entry.hidden;
@@ -118,9 +140,15 @@
       }
       if (remove && confirm("Remove this tenancy and its local records?")) {
         tenancies = tenancies.filter((entry) => entry.id !== remove.dataset.delete);
-        activeId = tenancies[0]?.id;
+        activeId = null;
+        history.replaceState({}, "", location.pathname);
         save(tenancies); render();
       }
+    });
+    window.addEventListener("popstate", () => {
+      activeId = history.state?.landlordTenantId || null;
+      render();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
     detail.addEventListener("submit", (event) => {
       const paymentForm = event.target.closest("[data-payment-form]");
@@ -146,10 +174,11 @@
       const message = document.querySelector("[data-form-message]");
       if (!token) { message.textContent = "Secure link generation requires a modern browser on HTTPS or localhost."; return; }
       const data = new FormData(form);
-      const item = { id: `tenant-${token.slice(0, 12)}`, accessToken: token, name: data.get("name").trim(), email: data.get("email").trim(), phone: data.get("phone").trim(), address: data.get("address").trim(), location: data.get("location").trim(), rent: data.get("rent").trim(), startDate: data.get("startDate"), renewalDate: data.get("renewalDate"), lastPaid: data.get("lastPaid"), payments: [], complaints: [] };
+      const item = { id: `tenant-${token.slice(0, 12)}`, accessToken: token, name: data.get("name").trim(), email: data.get("email").trim(), phone: data.get("phone").trim(), address: data.get("address").trim(), location: data.get("location").trim(), rent: data.get("rent").trim(), startDate: data.get("startDate"), renewalDate: data.get("renewalDate"), lastRenewalDate: data.get("lastRenewalDate") || data.get("startDate"), lastPaid: data.get("lastPaid"), payments: [], complaints: [] };
       tenancies.unshift(item);
       if (!save(tenancies)) { tenancies.shift(); message.textContent = "Could not save this tenancy in browser storage."; return; }
       activeId = item.id;
+      history.pushState({ landlordTenantId: activeId }, "", `#${encodeURIComponent(activeId)}`);
       form.reset();
       message.textContent = "Tenant created. Copy the private link from the tenancy details.";
       render();
